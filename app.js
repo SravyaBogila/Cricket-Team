@@ -74,10 +74,8 @@ app.get("/players/:playerId/", async (request, response) => {
             player_id = ${playerId};
     `;
   const dbResponse = await db.get(getPlayerQuery);
-  const snakeCase = dbResponse.map((eachPlayer) =>
-    snakeCaseToCamelCase(eachPlayer)
-  );
-  response.send(snakeCase(0, 1));
+  const snakeCase = snakeCaseToCamelCase(dbResponse);
+  response.send(snakeCase);
 });
 
 app.put("/players/:playerId/", async (request, response) => {
