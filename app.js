@@ -57,7 +57,7 @@ app.post("/players/", async (request, response) => {
         INSERT INTO cricket_team
             (player_name, jersey_number, role)
         VALUES
-            ("${playerName}", ${jerseyNumber}, ${role});
+            ("${playerName}", ${jerseyNumber}, "${role}");
     `;
   await db.run(addPlayerQuery);
   response.send("Player Added to Team");
@@ -103,7 +103,7 @@ app.delete("/players/:playerId/", async (request, response) => {
   const deletePlayerQuery = `
         DELETE
         FROM cricket_team
-        WHERE player_id = ${player_id};
+        WHERE player_id = ${playerId};
     `;
   await db.run(deletePlayerQuery);
   response.send("Player Removed");
